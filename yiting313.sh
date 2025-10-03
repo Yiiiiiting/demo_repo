@@ -168,7 +168,7 @@ spinner
 echo "Done"
 
 LB_IP=$(gcloud compute addresses describe lb-ipv4-1 \
-  --format="get(address)" \
+  --format="value(address)" \
   --global)
 echo "HTTP Load Balancer IP: $LB_IP"
 
@@ -197,13 +197,13 @@ echo "Done"
 
 echo -n "Creating URL map... "
 gcloud compute url-maps create web-map-http \
-    --default-service web-backend-service > /dev/null 2>&1 &
+    --default-service=web-backend-service > /dev/null 2>&1 &
 spinner
 echo "Done"
 
 echo -n "Creating target HTTP proxy... "
 gcloud compute target-http-proxies create http-lb-proxy \
-    --url-map web-map-http > /dev/null 2>&1 &
+    --url-map=web-map-http > /dev/null 2>&1 &
 spinner
 echo "Done"
 
