@@ -130,6 +130,7 @@ gcloud compute instance-templates create lb-backend-template \
    --metadata=startup-script='#!/bin/bash
      apt-get update
      apt-get install apache2 -y
+     service apache2 restart
      a2ensite default-ssl
      a2enmod ssl
      vm_hostname="$(curl -H "Metadata-Flavor:Google" \
@@ -143,8 +144,6 @@ echo "Done"
 echo -n "Creating managed instance group... "
 gcloud compute instance-groups managed create lb-backend-group \
    --template=lb-backend-template \
-   --base-instance-name=web \
-   --size=3 \
    --zone=$ZONE > /dev/null 2>&1 &
 spinner
 echo "Done"
