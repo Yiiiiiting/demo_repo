@@ -143,13 +143,11 @@ echo "Done"
 
 echo -n "Creating managed instance group... "
 gcloud compute instance-groups managed create lb-backend-group \
-   --template=lb-backend-template \
-   --zone=$ZONE > /dev/null 2>&1 &
+   --zone=$ZONE \
+   --template=lb-backend-template > /dev/null 2>&1 &
 spinner
 echo "Done"
 
-gcloud compute instance-groups managed list-instances lb-backend-group \
-  --zone=$ZONE
 
 echo -n "Creating health check firewall rule... "
 gcloud compute firewall-rules create fw-allow-health-check \
