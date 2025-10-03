@@ -148,6 +148,9 @@ gcloud compute instance-groups managed create lb-backend-group \
 spinner
 echo "Done"
 
+gcloud compute instance-groups managed list-instances lb-backend-group \
+  --zone=$ZONE
+
 echo -n "Creating health check firewall rule... "
 gcloud compute firewall-rules create fw-allow-health-check \
   --network=default \
