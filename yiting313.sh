@@ -144,7 +144,8 @@ echo "Done"
 echo -n "Creating managed instance group... "
 gcloud compute instance-groups managed create lb-backend-group \
    --zone=$ZONE \
-   --template=lb-backend-template > /dev/null 2>&1 &
+   --template=lb-backend-template \
+   --size=2 > /dev/null 2>&1 &
 spinner
 echo "Done"
 
