@@ -123,7 +123,6 @@ echo -n "Creating instance template... "
 gcloud compute instance-templates create lb-backend-template \
    --region=$REGION \
    --network=default \
-   --subnet=default \
    --tags=allow-health-check \
    --machine-type=e2-medium \
    --image-family=debian-12 \
@@ -144,6 +143,7 @@ echo "Done"
 echo -n "Creating managed instance group... "
 gcloud compute instance-groups managed create lb-backend-group \
    --template=lb-backend-template \
+   --base-instance-name=web \
    --size=3 \
    --zone=$ZONE > /dev/null 2>&1 &
 spinner
