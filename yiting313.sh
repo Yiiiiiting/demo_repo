@@ -53,6 +53,7 @@ for i in {1..3}; do
         --zone=$ZONE \
         --machine-type=e2-small \
         --tags=network-lb-tag \
+        --network=default \
         --image-family=debian-12 \
         --image-project=debian-cloud \
         --metadata=startup-script='#!/bin/bash
